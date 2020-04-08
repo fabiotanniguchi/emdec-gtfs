@@ -13,6 +13,7 @@ from lxml.html import fromstring as parse_html
 from collections import OrderedDict, namedtuple
 from euclid import Vector3 as Vector
 from geopy.geocoders import GoogleV3 as GoogleGeoCoder
+from geopy.geocoders import ArcGIS
 from datetime import timedelta
 import requests
 import random
@@ -20,20 +21,67 @@ from memorised.decorators import memorise
 
 # Each API Key can only do 2.5k requests/day
 # Emdec DB has ~5k stops, therefore we need to spread requests on multiple keys :/
+# geocoders = [
+#     GoogleGeoCoder('AIzaSyC2MApo4WYiSR9WxYJ0ov5Ib-rdTc-uQa8'),
+#     GoogleGeoCoder('AIzaSyDlmsVOnqu1ARzREzf0mJvIXdfsoly_fFQ'),
+#     GoogleGeoCoder('AIzaSyAgKju_AM4enk34atGJ-PDjbBEwvZYNAls'),
+#     GoogleGeoCoder('AIzaSyC_tiiOz6GwZwtBwDMEvt1T4dm2MAWR9N0'),
+#     GoogleGeoCoder('AIzaSyDpCCmR0LueNV2IDiWwzJ1S3r14NxI2Tbs'),
+#     GoogleGeoCoder('AIzaSyC0lCfrk2jG7BVuvWNttJEYYxIo43GANWU'),
+# ]
 geocoders = [
-    GoogleGeoCoder('AIzaSyDo8qUyqvHULeUqRHucR9rBSEIdTsbUe4M'),
-    GoogleGeoCoder('AIzaSyAzo7m5NgTPeCnYsTlHOMIF1lxUUYzzuZ8'),
-    GoogleGeoCoder('AIzaSyBWraQCXoMBHpwPUAhj9DGwc0MxZ8ZR5Qo'),
-    GoogleGeoCoder('AIzaSyB3upaTsrSPqpDswxnuNEzoLHjWYqrzZYc'),
-    GoogleGeoCoder('AIzaSyBNtMdNylWbMcYpX2e_cnA6Xe6PEqwJrGk'),
-    GoogleGeoCoder('AIzaSyDHK28z7ujgxM71UyGbrKb5RYhi7l1ZZ2U'),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS(),
+    ArcGIS()
 ]
+
 
 DAYS = 24*60*60
 @memorise(ttl=(25*DAYS, 35*DAYS))
 def geocode_reverse(point):
     pos = '%f,%f' % tuple(point)
-    address = random.choice(geocoders).reverse(pos)[0].address
+
+    result = None
+    while result is None:
+        try:
+            result = random.choice(geocoders).reverse(pos)
+        except:
+            print("Will try another instance of ArcGIS")
+            pass
+
+    print(result[0])
+    # address = result[0].address USE WHEN REACTIVATE GOOGLE
+    address = result[0]
     return re.sub(', Campinas.*', '',  address)
 
 @memorise(ttl=(25*DAYS, 35*DAYS))
