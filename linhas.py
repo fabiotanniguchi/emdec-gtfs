@@ -373,17 +373,17 @@ def detalhes(linha):
     # http://www.portalinterbuss.com.br/campinas/layout-da-frota
     ret["route_color"] = {
         '1': '1985E9', # AZUL CLARO
-        '2': 'e91919', # VERMELHO
-        '3': '0D2447', # VERDE
-        '4': '0D2447', # AZUL ESCURO
-        '5': '9D9D9D', # BRANCO COM FIGURAS
+        '2': 'E00000', # VERMELHO
+        '3': '45C938', # VERDE
+        '4': '2300BC', # AZUL ESCURO
+        '5': '45C938', # BRANCO COM FIGURAS
     }[linha[0]]
     ret["route_text_color"] = {
-        '1': 'C6E4FF', # AZUL CLARO
-        '2': 'FFDDDD', # VERMELHO
-        '3': 'E8FFDC', # VERDE
-        '4': 'CFE2FF', # AZUL ESCURO
-        '5': 'EFEFEF', # BRANCO COM FIGURAS
+        '1': 'FFFFFF', # AZUL CLARO
+        '2': 'FFFFFF', # VERMELHO
+        '3': 'FFFFFF', # VERDE
+        '4': 'FFFFFF', # AZUL ESCURO
+        '5': 'FFFFFF', # BRANCO COM FIGURAS
     }[linha[0]]
     ret["directions"] = trechos
 
