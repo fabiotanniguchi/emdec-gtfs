@@ -79,12 +79,12 @@ def geocode_reverse(point):
             print("Will try another instance of ArcGIS")
             pass
 
-    print(result[0])
     # address = result[0].address USE WHEN REACTIVATE GOOGLE
     address = result[0]
     address = re.sub(', Campinas.*', '',  address)
     if address == "":
         address = "Ponto sem nome"
+    print(address)
     return address
 
 @memorise(ttl=(25*DAYS, 35*DAYS))
