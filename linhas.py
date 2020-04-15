@@ -82,7 +82,10 @@ def geocode_reverse(point):
     print(result[0])
     # address = result[0].address USE WHEN REACTIVATE GOOGLE
     address = result[0]
-    return re.sub(', Campinas.*', '',  address)
+    address = re.sub(', Campinas.*', '',  address)
+    if address == "":
+        address = "Ponto sem nome"
+    return address
 
 @memorise(ttl=(25*DAYS, 35*DAYS))
 def geocode(location):
