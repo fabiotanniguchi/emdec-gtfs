@@ -166,7 +166,7 @@ class RouteHandler(handlers.BaseRequestHandler):
                 key=ndb.Key(Route, route_code),
                 agency_id=agency.key,
                 route_short_name=raw_route['route_short_name'],
-                route_long_name=(str(raw_route['route_long_name'])).title(),
+                route_long_name=raw_route['route_long_name'].title(),
                 route_desc=(raw_route['comments'] or '').replace('\n', ' '),  # FIXME Not really a description
                 route_type=Route.Type.BUS,
                 route_url=raw_route['route_url'],
