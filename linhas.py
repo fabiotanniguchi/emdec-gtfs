@@ -364,7 +364,7 @@ def detalhes(linha):
 
     ret = OrderedDict()
     ret["route_short_name"] = linha
-    ret["route_long_name"] = route_long_name.title()
+    ret["route_long_name"] = route_long_name
     ret["company"] = get_text(pag_detalhes, 'txtEmpresa')
     ret["comments"] = get_text(pag_detalhes, 'txtObservacao')
     ret["updated"] = strip(pag_detalhes.cssselect('#conteudo font[size="1"]')[0].text.split('\n')[1])
