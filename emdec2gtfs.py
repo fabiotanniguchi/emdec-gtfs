@@ -139,7 +139,7 @@ class RouteHandler(handlers.BaseRequestHandler):
     def get_fare(self):
         return Fare(
             key=ndb.Key(Fare, 'normal fare'),
-            price=3.50,
+            price=4.95,
             currency_type='BRL',
             payment_method=Fare.PaymentMethod.ONBOARD,
             transfers=None, # UNLIMITED
